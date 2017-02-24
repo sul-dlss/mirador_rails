@@ -38,6 +38,23 @@ And the css
 
 You may not want to do this in your application.js, as the JavaScript by itself may add over 1.8MB to your application.js payload.
 
+### Initialize mirador in a view
+
+```erb
+<%= mirador_tag() %>
+```
+
+The `mirador_tag` method takes several arguments which allow for customization of the mirador view.
+
+```ruby
+# @param [String] id
+# @param [String] height
+# @param [String] width
+# @param [String] position
+# @param [String] display
+# @param [Hash] options Mirador settings
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

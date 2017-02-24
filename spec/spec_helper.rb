@@ -1,4 +1,5 @@
 require "bundler/setup"
+require 'rails'
 require "mirador_rails"
 
 RSpec.configure do |config|

@@ -46,46 +46,13 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Upgrading
 
-From a new Mirador release build, copy the following:
-
-locales
+From a new Mirador release build, run the rake task with the tag:
 
 ```sh
-$ cp -r ~/Downloads/build/mirador/locales vendor/assets/
+$ bundle exec rake update[v2.1.4]
 ```
 
-images
-
-```sh
-$ cp -r ~/Downloads/build/mirador/images/ vendor/assets/
-```
-
-stylesheet
-
-```sh
-$ cp ~/Downloads/build/mirador/css/mirador-combined.css vendor/assets/stylesheets/
-```
-
-javascript
-
-```sh
-$ cp ~/Downloads/build/mirador/mirador.min.js vendor/assets/javascripts/
-$ cp ~/Downloads/build/mirador/mirador.min.js.map vendor/assets/javascripts/
-```
-
-tinymce plugins
-
-```sh
-$ cp -r ~/Downloads/build/mirador/plugins vendor/assets/plugins/
-```
-
-tinymce themes
-
-```sh
-$ cp -r ~/Downloads/build/mirador/themes vendor/assets/themes/
-```
-
- Delete FontAwesome and MaterialIcons from mirador-combined.css. We include this in dependent gems instead.
+Delete FontAwesome and MaterialIcons from mirador-combined.css. We include this in dependent gems instead.
 
 ## Contributing
 

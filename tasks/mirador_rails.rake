@@ -43,7 +43,7 @@ task :update, [:version] do |_t, args|
   FileUtils.cp(File.join(mirador_dir, 'css', 'mirador-combined.css') , File.join(vendor_dir, 'stylesheets'))
 
   puts 'Copying javascripts'
-  FileUtils.cp(Dir.glob(File.join(mirador_dir, 'mirador.min.js*')), File.join(vendor_dir, 'javascripts'))
+  FileUtils.cp(Dir.glob(File.join(mirador_dir, 'mirador.js')), File.join(vendor_dir, 'javascripts', 'mirador'))
 
   puts 'Update successful, make sure to remove the FontAwesome and MaterialIcon blocks from mirador-combined.css'
 end

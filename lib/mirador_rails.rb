@@ -6,7 +6,8 @@ require 'material_icons'
 module MiradorRails
   class Engine < ::Rails::Engine
     initializer 'mirador_rails.precompile' do |app|
-      app.config.assets.precompile += %w(locales/* plugins/* themes/* skins/*)
+      app.config.assets.precompile += %w(plugins/* themes/* skins/*)
+      app.middleware.use ActionDispatch::Static, "#{root}/public"
     end
 
     initializer 'mirador_rails.helpers' do

@@ -1,0 +1,36 @@
+// Override defaults to use SCSS instead of JS
+
+$solid-bg: 'border_type_1.png';
+$dashed-bg: 'border_type_2.png';
+$dotdashed-bg: 'border_type_3.png';
+$thick-bg: 'border_type_4.png';
+$thickest-bg: 'border_type_5.png';
+
+
+@mixin bg-for-line($image) {
+  background-image: image-url($image);
+}
+
+.mirador-container .mirador-line-type {
+  .border-type-image, ul i {
+    &.solid {
+      @include bg-for-line($solid-bg);
+    }
+
+    &.dashed {
+      @include bg-for-line($dashed-bg);
+    }
+
+    &.dotdashed {
+      @include bg-for-line($dotdashed-bg);
+    }
+
+    &.thick {
+      @include bg-for-line($thick-bg);
+    }
+
+    &.thickest {
+      @include bg-for-line($thickest-bg);
+    }
+  }
+}

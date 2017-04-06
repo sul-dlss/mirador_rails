@@ -52,7 +52,9 @@ task :update, [:version] do |_t, args|
   text = File.read(mirador_js)
   puts 'Replacing images with erb tags'
   content = text.gsub("var backgroundImage = _this.state.getStateProperty('buildPath') + _this.state.getStateProperty('imagesPath') + 'debut_dark.png';", "var backgroundImage = \"<%= asset_path('debut_dark.png') %>\"")
-  content = content.gsub("return this.state.getStateProperty('buildPath') + this.state.getStateProperty('imagesPath') + imageName;", "return \"<%= asset_path('imageName') %>\"")
+
+  puts 'Comment out border image replacement, using SCSS instead'
+  content = content.gsub("el.css('background-image','url('+this.getImagePath(imageName)+')');", 'el // Comment out, using SCSS instead \1')
 
   puts 'Replacing i18next template, with MiradorRails controller route (default)'
   content = content.gsub("loadPath: _this.state.getStateProperty('buildPath') + _this.state.getStateProperty('i18nPath')+'{{lng}}/{{ns}}.json'", "loadPath: '<%= MiradorRails::Engine.locales_mount_path %>' + '/{{lng}}/{{ns}}.json'")

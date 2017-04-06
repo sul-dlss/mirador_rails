@@ -25,18 +25,12 @@ task :update, [:version] do |_t, args|
   end
   mirador_dir = File.join(tmp_dir, 'build', 'mirador')
   vendor_dir = File.join(File.expand_path('..', File.dirname(__FILE__)), 'vendor', 'assets')
-  dirs_to_modify = %w(images locales plugins skins themes)
-  dirs_to_remap = %w(plugins skins themes)
+  dirs_to_modify = %w(images locales)
 
   puts "Removing and copying #{dirs_to_modify}"
   dirs_to_modify.map { |d| FileUtils.rm_rf(File.join(vendor_dir, d)) }
   dirs_to_modify.map do |d|
-    if dirs_to_remap.include?(d)
-      FileUtils.mkdir_p(File.join(vendor_dir, d))
-      FileUtils.cp_r(File.join(mirador_dir, d), File.join(vendor_dir, d, d))
-    else
-      FileUtils.cp_r(File.join(mirador_dir, d), File.join(vendor_dir, d))
-    end
+    FileUtils.cp_r(File.join(mirador_dir, d), File.join(vendor_dir, d))
   end
 
   puts 'Copying stylesheets'
@@ -58,6 +52,9 @@ task :update, [:version] do |_t, args|
 
   puts 'Replacing i18next template, with MiradorRails controller route (default)'
   content = content.gsub("loadPath: _this.state.getStateProperty('buildPath') + _this.state.getStateProperty('i18nPath')+'{{lng}}/{{ns}}.json'", "loadPath: '<%= MiradorRails::Engine.locales_mount_path %>' + '/{{lng}}/{{ns}}.json'")
+
+  puts 'Removes tinymce library'
+  content = content.gsub(/^!function\(e,t\).*(tinymce\S*){10,}.*\/\*!\n\n handlebars/m, "/*!\n\n handlebars")
 
   puts 'Removing OpenSeaDragon'
   content = content.gsub(/\/\/! openseadragon .*\/\/# sourceMappingURL=openseadragon.js.map/m, '')

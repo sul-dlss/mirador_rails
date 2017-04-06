@@ -6,6 +6,7 @@ require 'font-awesome-rails'
 require 'material_icons'
 require 'openseadragon'
 require 'jquery-rails'
+require 'tinymce-rails'
 
 module MiradorRails
   ##

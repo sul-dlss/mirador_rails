@@ -58,8 +58,13 @@ task :update, [:version] do |_t, args|
 
   puts 'Removing OpenSeaDragon'
   content = content.gsub(/\/\/! openseadragon .*\/\/# sourceMappingURL=openseadragon.js.map/m, '')
+
   puts 'Removing jQuery'
   content = content.gsub(/\/\*! jQuery v.*\/*! jQuery Migrate/m, '/*! jQuery Migrate')
+
+  puts 'Remove qtip map'
+  content = content.gsub("//# sourceMappingURL=jquery.qtip.min.js.map", "\n")
+
   File.open(mirador_erb, 'w') { |f| f << content }
   FileUtils.rm(mirador_js)
 

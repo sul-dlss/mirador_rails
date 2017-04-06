@@ -20,6 +20,12 @@ Or install it yourself as:
 
     $ gem install mirador_rails
 
+### Mount the Engine
+In your `routes.rb` file mount the MiradorRails::Engine
+```ruby
+mount MiradorRails::Engine, at: MiradorRails::Engine.locales_mount_path
+```
+
 ## Usage
 
 You can require the mirador js by requiring the following:

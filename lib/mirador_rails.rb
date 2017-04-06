@@ -2,6 +2,8 @@ require 'mirador_rails/version'
 require 'mirador_rails/view_helpers'
 require 'font-awesome-rails'
 require 'material_icons'
+require 'openseadragon'
+require 'jquery-rails'
 
 module MiradorRails
   class Engine < ::Rails::Engine

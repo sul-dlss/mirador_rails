@@ -45,5 +45,31 @@ task :update, [:version] do |_t, args|
   puts 'Copying javascripts'
   FileUtils.cp(Dir.glob(File.join(mirador_dir, 'mirador.js')), File.join(vendor_dir, 'javascripts', 'mirador'))
 
-  puts 'Update successful, make sure to remove the FontAwesome and MaterialIcon blocks from mirador-combined.css'
+  puts 'Updating js to use erb'
+  mirador_erb = File.join(vendor_dir, 'javascripts', 'mirador', 'mirador.js.erb')
+  mirador_js = File.join(vendor_dir, 'javascripts', 'mirador', 'mirador.js')
+
+  text = File.read(mirador_js)
+  puts 'Replacing images with erb tags'
+  content = text.gsub("var backgroundImage = _this.state.getStateProperty('buildPath') + _this.state.getStateProperty('imagesPath') + 'debut_dark.png';", "var backgroundImage = \"<%= asset_path('debut_dark.png') %>\"")
+  content = content.gsub("return this.state.getStateProperty('buildPath') + this.state.getStateProperty('imagesPath') + imageName;", "return \"<%= asset_path('imageName') %>\"")
+  puts 'Removing OpenSeaDragon'
+  content = content.gsub(/\/\/! openseadragon .*\/\/# sourceMappingURL=openseadragon.js.map/m, '')
+  puts 'Removing jQuery'
+  content = content.gsub(/\/\*! jQuery v.*\/*! jQuery Migrate/m, '/*! jQuery Migrate')
+  File.open(mirador_erb, 'w') { |f| f << content }
+  FileUtils.rm(mirador_js)
+
+  puts 'Removing FontAwesome from css'
+  css_file = File.join(vendor_dir, 'stylesheets', 'mirador-combined.css')
+  text = File.read(css_file)
+  content = text.gsub(/\/\*!\n\s\*\s\sFont Awesome.*\/*! jQuery UI/m, '/*! jQuery UI')
+  File.open(css_file, 'w') { |f| f << content }
+
+  puts 'Removing MaterialIcons from css'
+  css_file = File.join(vendor_dir, 'stylesheets', 'mirador-combined.css')
+  text = File.read(css_file)
+  content = text.gsub(/@font-face {\s*font-family: 'Material Icons';.*}/m, '')
+  content = content.gsub(/\.material-icons {\s*font-family: 'Material Icons';.*}/m, '')
+  File.open(css_file, 'w') { |f| f << content }
 end

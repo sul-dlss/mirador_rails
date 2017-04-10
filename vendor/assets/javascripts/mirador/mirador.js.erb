@@ -1,5 +1,5 @@
-//! mirador 2.3.0
-//! Built on 2017-03-24
+//! mirador 2.4.0
+//! Built on 2017-04-10
 /*! jQuery Migrate v3.0.0 | (c) jQuery Foundation and other contributors | jquery.org/license */
 "undefined"==typeof jQuery.migrateMute&&(jQuery.migrateMute=!0),function(a,b){"use strict";function c(c){var d=b.console;e[c]||(e[c]=!0,a.migrateWarnings.push(c),d&&d.warn&&!a.migrateMute&&(d.warn("JQMIGRATE: "+c),a.migrateTrace&&d.trace&&d.trace()))}function d(a,b,d,e){Object.defineProperty(a,b,{configurable:!0,enumerable:!0,get:function(){return c(e),d}})}a.migrateVersion="3.0.0",function(){var c=b.console&&b.console.log&&function(){b.console.log.apply(b.console,arguments)},d=/^[12]\./;c&&(a&&!d.test(a.fn.jquery)||c("JQMIGRATE: jQuery 3.0.0+ REQUIRED"),a.migrateWarnings&&c("JQMIGRATE: Migrate plugin loaded multiple times"),c("JQMIGRATE: Migrate is installed"+(a.migrateMute?"":" with logging active")+", version "+a.migrateVersion))}();var e={};a.migrateWarnings=[],void 0===a.migrateTrace&&(a.migrateTrace=!0),a.migrateReset=function(){e={},a.migrateWarnings.length=0},"BackCompat"===document.compatMode&&c("jQuery is not compatible with Quirks Mode");var f=a.fn.init,g=a.isNumeric,h=a.find,i=/\[(\s*[-\w]+\s*)([~|^$*]?=)\s*([-\w#]*?#[-\w#]*)\s*\]/,j=/\[(\s*[-\w]+\s*)([~|^$*]?=)\s*([-\w#]*?#[-\w#]*)\s*\]/g;a.fn.init=function(a){var b=Array.prototype.slice.call(arguments);return"string"==typeof a&&"#"===a&&(c("jQuery( '#' ) is not a valid selector"),b[0]=[]),f.apply(this,b)},a.fn.init.prototype=a.fn,a.find=function(a){var b=Array.prototype.slice.call(arguments);if("string"==typeof a&&i.test(a))try{document.querySelector(a)}catch(d){a=a.replace(j,function(a,b,c,d){return"["+b+c+'"'+d+'"]'});try{document.querySelector(a),c("Attribute selector with '#' must be quoted: "+b[0]),b[0]=a}catch(e){c("Attribute selector with '#' was not fixed: "+b[0])}}return h.apply(this,b)};var k;for(k in h)Object.prototype.hasOwnProperty.call(h,k)&&(a.find[k]=h[k]);a.fn.size=function(){return c("jQuery.fn.size() is deprecated; use the .length property"),this.length},a.parseJSON=function(){return c("jQuery.parseJSON is deprecated; use JSON.parse"),JSON.parse.apply(null,arguments)},a.isNumeric=function(b){function d(b){var c=b&&b.toString();return!a.isArray(b)&&c-parseFloat(c)+1>=0}var e=g(b),f=d(b);return e!==f&&c("jQuery.isNumeric() should not be called on constructed objects"),f},d(a,"unique",a.uniqueSort,"jQuery.unique is deprecated, use jQuery.uniqueSort"),d(a.expr,"filters",a.expr.pseudos,"jQuery.expr.filters is now jQuery.expr.pseudos"),d(a.expr,":",a.expr.pseudos,'jQuery.expr[":"] is now jQuery.expr.pseudos');var l=a.ajax;a.ajax=function(){var a=l.apply(this,arguments);return a.promise&&(d(a,"success",a.done,"jQXHR.success is deprecated and removed"),d(a,"error",a.fail,"jQXHR.error is deprecated and removed"),d(a,"complete",a.always,"jQXHR.complete is deprecated and removed")),a};var m=a.fn.removeAttr,n=a.fn.toggleClass,o=/\S+/g;a.fn.removeAttr=function(b){var d=this;return a.each(b.match(o),function(b,e){a.expr.match.bool.test(e)&&(c("jQuery.fn.removeAttr no longer sets boolean properties: "+e),d.prop(e,!1))}),m.apply(this,arguments)},a.fn.toggleClass=function(b){return void 0!==b&&"boolean"!=typeof b?n.apply(this,arguments):(c("jQuery.fn.toggleClass( boolean ) is deprecated"),this.each(function(){var c=this.getAttribute&&this.getAttribute("class")||"";c&&a.data(this,"__className__",c),this.setAttribute&&this.setAttribute("class",c||b===!1?"":a.data(this,"__className__")||"")}))};var p=!1;a.swap&&a.each(["height","width","reliableMarginRight"],function(b,c){var d=a.cssHooks[c]&&a.cssHooks[c].get;d&&(a.cssHooks[c].get=function(){var a;return p=!0,a=d.apply(this,arguments),p=!1,a})}),a.swap=function(a,b,d,e){var f,g,h={};p||c("jQuery.swap() is undocumented and deprecated");for(g in b)h[g]=a.style[g],a.style[g]=b[g];f=d.apply(a,e||[]);for(g in b)a.style[g]=h[g];return f};var q=a.data;a.data=function(b,d,e){var f;return d&&d!==a.camelCase(d)&&(f=a.hasData(b)&&q.call(this,b),f&&d in f)?(c("jQuery.data() always sets/gets camelCased names: "+d),arguments.length>2&&(f[d]=e),f[d]):q.apply(this,arguments)};var r=a.Tween.prototype.run;a.Tween.prototype.run=function(b){a.easing[this.easing].length>1&&(c('easing function "jQuery.easing.'+this.easing.toString()+'" should use only first argument'),a.easing[this.easing]=a.easing[this.easing].bind(a.easing,b,this.options.duration*b,0,1,this.options.duration)),r.apply(this,arguments)};var s=a.fn.load,t=a.event.fix;a.event.props=[],a.event.fixHooks={},a.event.fix=function(b){var d,e=b.type,f=this.fixHooks[e],g=a.event.props;if(g.length)for(c("jQuery.event.props are deprecated and removed: "+g.join());g.length;)a.event.addProp(g.pop());if(f&&!f._migrated_&&(f._migrated_=!0,c("jQuery.event.fixHooks are deprecated and removed: "+e),(g=f.props)&&g.length))for(;g.length;)a.event.addProp(g.pop());return d=t.call(this,b),f&&f.filter?f.filter(d,b):d},a.each(["load","unload","error"],function(b,d){a.fn[d]=function(){var a=Array.prototype.slice.call(arguments,0);return"load"===d&&"string"==typeof a[0]?s.apply(this,a):(c("jQuery.fn."+d+"() is deprecated"),a.splice(0,0,d),arguments.length?this.on.apply(this,a):(this.triggerHandler.apply(this,a),this))}}),a(function(){a(document).triggerHandler("ready")}),a.event.special.ready={setup:function(){this===document&&c("'ready' event is deprecated")}},a.fn.extend({bind:function(a,b,d){return c("jQuery.fn.bind() is deprecated"),this.on(a,null,b,d)},unbind:function(a,b){return c("jQuery.fn.unbind() is deprecated"),this.off(a,null,b)},delegate:function(a,b,d,e){return c("jQuery.fn.delegate() is deprecated"),this.on(b,a,d,e)},undelegate:function(a,b,d){return c("jQuery.fn.undelegate() is deprecated"),1===arguments.length?this.off(a,"**"):this.off(b,a||"**",d)}});var u=a.fn.offset;a.fn.offset=function(){var b,d=this[0],e={top:0,left:0};return d&&d.nodeType?(b=(d.ownerDocument||document).documentElement,a.contains(b,d)?u.apply(this,arguments):(c("jQuery.fn.offset() requires an element connected to a document"),e)):(c("jQuery.fn.offset() requires a valid DOM element"),e)};var v=a.param;a.param=function(b,d){var e=a.ajaxSettings&&a.ajaxSettings.traditional;return void 0===d&&e&&(c("jQuery.param() no longer uses jQuery.ajaxSettings.traditional"),d=e),v.call(this,b,d)};var w=a.fn.andSelf||a.fn.addBack;a.fn.andSelf=function(){return c("jQuery.fn.andSelf() replaced by jQuery.fn.addBack()"),w.apply(this,arguments)};var x=a.Deferred,y=[["resolve","done",a.Callbacks("once memory"),a.Callbacks("once memory"),"resolved"],["reject","fail",a.Callbacks("once memory"),a.Callbacks("once memory"),"rejected"],["notify","progress",a.Callbacks("memory"),a.Callbacks("memory")]];a.Deferred=function(b){var d=x(),e=d.promise();return d.pipe=e.pipe=function(){var b=arguments;return c("deferred.pipe() is deprecated"),a.Deferred(function(c){a.each(y,function(f,g){var h=a.isFunction(b[f])&&b[f];d[g[1]](function(){var b=h&&h.apply(this,arguments);b&&a.isFunction(b.promise)?b.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[g[0]+"With"](this===e?c.promise():this,h?[b]:arguments)})}),b=null}).promise()},b&&b.call(d,d),d}}(jQuery,window);
 /*! jQuery UI - v1.12.1 - 2016-09-14
@@ -6966,7 +6966,10 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       //control what is available in the side panel. if "sidePanel" is false, these options won't be applied
       "sidePanelOptions" : {
         "toc" : true,
-        "annotations" : false
+        "annotations" : false,
+        "tocTabAvailable": true,
+        // "layersTabAvailable": true,
+        "searchTabAvailable": false,
       },
       "sidePanelVisible" : true, //whether or not to make the side panel visible in this window on load. This setting is dependent on sidePanel being true
       "overlay" : true, //whether or not to make the metadata overlay available/visible in this window
@@ -7226,6 +7229,7 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       // add main menu
       if (showMainMenu) {
         this.mainMenu = new $.MainMenu({ appendTo: this.element, state: this.state, eventEmitter: this.eventEmitter });
+        this.eventEmitter.publish('mainMenuInitialized');
       }
 
       // add viewer area
@@ -8965,7 +8969,18 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
 
       this.request.done(function(jsonLd) {
         _this.jsonLd = jsonLd;
+        _this.buildCanvasMap();
       });
+    },
+    buildCanvasMap: function() {
+      var _this = this;
+      this.canvasMap = {};
+
+      if (this.getCanvases()) {
+        this.getCanvases().forEach(function(canvas) {
+          _this.canvasMap[canvas['@id']] = canvas;
+        });
+      }
     },
     initFromInfoJson: function(infoJsonUrl) {
       var _this = this;
@@ -9003,10 +9018,10 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
         } else if (canvas.thumbnail.hasOwnProperty('service')) {
             service = canvas.thumbnail.service;
             if(service.hasOwnProperty('profile')) {
-               compliance = $.Iiif.getComplianceLevelFromProfile(service.profile);    
+               compliance = $.Iiif.getComplianceLevelFromProfile(service.profile);
             }
             if(compliance === 0){
-                // don't change existing behaviour unless compliance is explicitly 0            
+                // don't change existing behaviour unless compliance is explicitly 0
                 thumbnailUrl = canvas.thumbnail['@id'];
             } else {
                 // Get the IIIF Image API via the @context
@@ -9040,7 +9055,7 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
     },
     getCanvases : function() {
       var _this = this;
-      return _this.jsonLd.sequences[0].canvases;
+      return _this.jsonLd.sequences && _this.jsonLd.sequences[0].canvases;
     },
     getAnnotationsListUrls: function(canvasId) {
       var _this = this;
@@ -9109,6 +9124,46 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       };
 
       return dummyManifest;
+    },
+    getSearchWithinService: function(){
+      var _this = this;
+      var serviceProperty = _this.jsonLd.service;
+      var service = [];
+      if (serviceProperty === undefined){
+        service = null;
+      }
+      else if (serviceProperty.constructor === Array){
+        for (var i = 0; i < serviceProperty.length; i++){
+          //TODO: should we be filtering search by context
+          if (serviceProperty[i]["@context"] === "http://iiif.io/api/search/0/context.json" ||
+            serviceProperty[i]["@context"] === "http://iiif.io/api/search/1/context.json") {
+            //returns the first service object with the correct context
+            service.push(serviceProperty[i]);
+          }
+        }
+      }
+      else if (_this.jsonLd.service["@context"] === "http://iiif.io/api/search/0/context.json" ||
+        serviceProperty["@context"] === "http://iiif.io/api/search/1/context.json"){
+        service.push(_this.jsonLd.service);
+      }
+      else {
+        //no service object with the right context is found
+        service = null;
+      }
+      return service;
+    },
+
+    /**
+     * Get the label of the a canvas by ID
+     * @param  {[type]} canvasId ID of desired canvas
+     * @return {[type]}          string
+     */
+    getCanvasLabel: function(canvasId) {
+      console.assert(canvasId && canvasId !== '', "No canvasId was specified.");
+      if (this.canvasMap && canvasId.indexOf('#') >= 0) {
+        var canvas = this.canvasMap[canvasId.split('#')[0]];
+        return canvas ? canvas.label : undefined;
+      }
     }
   };
 
@@ -9675,11 +9730,11 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
         //if it is a manifest annotation, don't allow editing or deletion
         //otherwise, check annotation in endpoint
         var showUpdate = false;
-        if (annotation.endpoint !== 'manifest') {
+        if (typeof annotation.endpoint !== 'undefined' && annotation.endpoint !== 'manifest') {
           showUpdate = annotation.endpoint.userAuthorize('update', annotation);
         }
         var showDelete = false;
-        if (annotation.endpoint !== 'manifest') {
+        if (typeof annotation.endpoint !== 'undefined' && annotation.endpoint !== 'manifest') {
           showDelete = annotation.endpoint.userAuthorize('delete', annotation);
         }
         htmlAnnotations.push({
@@ -14457,7 +14512,8 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
         "BookView" : "fa fa-columns fa-lg fa-fw",
         "ScrollView" : "fa fa-ellipsis-h fa-lg fa-fw",
         "ThumbnailsView" : "fa fa-th fa-lg fa-rotate-90 fa-fw"
-      }
+      },
+      userButtons: null
     }, options);
 
     this.init();
@@ -14556,6 +14612,7 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       }
       templateData.currentFocusClass = _this.iconClasses[_this.viewType];
       templateData.showFullScreen = _this.fullScreen;
+      templateData.userButtons = _this.userButtons;
       _this.element = jQuery(this.template(templateData)).appendTo(_this.appendTo);
       this.element.find('.manifest-info .mirador-tooltip').each(function() {
         jQuery(this).qtip({
@@ -14713,7 +14770,17 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       }));
 
       _this.events.push(_this.eventEmitter.subscribe('SET_CURRENT_CANVAS_ID.' + this.id, function(event, canvasID) {
-        _this.setCurrentCanvasID(canvasID);
+        if (typeof canvasID === "string") {
+          _this.setCurrentCanvasID(canvasID);
+        } else {
+          if (_this.canvasID !== canvasID.canvasID) {
+            // Order is important
+            _this.setNextCanvasBounds(canvasID.bounds);
+            _this.setCurrentCanvasID(canvasID.canvasID);
+          } else {
+            _this.eventEmitter.publish('fitBounds.' + _this.id, canvasID.bounds);
+          }
+        }
       }));
 
       _this.events.push(_this.eventEmitter.subscribe('REMOVE_CLASS.' + this.id, function(event, className) {
@@ -14911,7 +14978,8 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       var _this = this,
       tocAvailable = _this.sidePanelOptions.toc,
       annotationsTabAvailable = _this.sidePanelOptions.annotations,
-      layersTabAvailable = _this.sidePanelOptions.layers,
+      layersTabAvailable = _this.sidePanelOptions.layersTabAvailable,
+      searchTabAvailable = _this.sidePanelOptions.searchTabAvailable,
       hasStructures = true;
 
       var structures = _this.manifest.getStructures();
@@ -14929,6 +14997,7 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
               canvasID: _this.canvasID,
               layersTabAvailable: layersTabAvailable,
               tocTabAvailable: tocAvailable,
+              searchTabAvailable: searchTabAvailable,
               annotationsTabAvailable: annotationsTabAvailable,
               hasStructures: hasStructures
         });
@@ -15047,7 +15116,7 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       this.updateManifestInfo();
       this.updatePanelsAndOverlay(focusState);
       this.updateSidePanel();
-      _this.eventEmitter.publish("focusUpdated");
+      _this.eventEmitter.publish("focusUpdated" + _this.id, focusState);
       _this.eventEmitter.publish("windowUpdated", {
         id: _this.id,
         viewType: _this.viewType,
@@ -15095,10 +15164,13 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
           canvasControls: this.canvasControls,
           annotationState : this.canvasControls.annotations.annotationState
         });
-      } else {
-        var view = this.focusModules.ImageView;
-        view.updateImage(canvasID);
-      }
+        } else {
+          var view = this.focusModules.ImageView;
+          if (this.boundsToFocusOnNextOpen) {
+            view.boundsToFocusOnNextOpen = this.boundsToFocusOnNextOpen;
+          }
+          view.updateImage(canvasID);
+        }
       this.toggleFocus('ImageView', 'ImageView');
     },
 
@@ -15169,6 +15241,12 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
           break;
       }
       _this.eventEmitter.publish(('currentCanvasIDUpdated.' + _this.id), canvasID);
+    },
+
+    setNextCanvasBounds: function(bounds) {
+      if (bounds) {
+        this.boundsToFocusOnNextOpen = bounds;
+      }
     },
 
     replaceWindow: function(newSlotAddress, newElement) {
@@ -15337,6 +15415,9 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
                                  '<div class="window">',
                                  '<div class="manifest-info">',
                                  '<div class="window-manifest-navigation">',
+                                 '{{#if userButtons}}',
+                                   '{{windowuserbtns userButtons}}',
+                                 '{{/if}}',
                                  '<a href="javascript:;" class="mirador-btn mirador-icon-view-type" role="button" title="{{t "viewTypeTooltip"}}" aria-label="{{t "viewTypeTooltip"}}">',
                                  '<i class="{{currentFocusClass}}"></i>',
                                  '<i class="fa fa-caret-down"></i>',
@@ -15411,6 +15492,42 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
     ].join(''))
   };
 
+  var processUserButtons = function (buttons){
+    return buttons.map(function(button, index){
+      return processUserButton(button);
+    });
+  };
+
+  var processUserButton = function(button){
+    var $a = jQuery('<a>');
+    var $i = jQuery('<i>', {'class': 'fa fa-lg fa-fw'});
+    try {
+      if(!button.iconClass){
+        throw "userButtons must have an iconClass";
+      }
+      // add custom attributes to the button element
+      if(button.attributes){
+        $a.attr(button.attributes);
+      }
+      // add default class to the button element
+      $a.addClass('mirador-btn');
+      // add custom classes to the icon element
+      $i.addClass(button.iconClass);
+      // append the icon element to the button element
+      $a.append($i);
+      return $a.get(0).outerHTML;
+    }catch(error){
+      console && console.error && console.error(error);
+      return '';
+    }
+  };
+
+  $.Handlebars.registerHelper('windowuserbtns', function(userButtons){
+    return new $.Handlebars.SafeString(
+      processUserButtons(userButtons).join('')
+    );
+  });
+
 }(Mirador));
 
 (function($) {
@@ -15439,6 +15556,8 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
     init: function() {
       var _this = this;
       _this.eventEmitter.unsubscribe(('modeChange.' + _this.windowId));
+      _this.eventEmitter.unsubscribe(('slotLeave.' + _this.windowId));
+      _this.eventEmitter.unsubscribe(('slotEnter.' + _this.windowId));
 
       this.createStateMachine();
       this.createRenderer();
@@ -15457,6 +15576,20 @@ this._cbs.ontext(data)}};Tokenizer.prototype.reset=function(){Tokenizer.call(thi
       _this.eventEmitter.subscribe('annotationListLoaded.' + _this.windowId, function(event) {
         _this.annotationsList = _this.state.getWindowAnnotationsList(_this.windowId);
         _this.updateRenderer();
+      });
+
+      _this.eventEmitter.subscribe('slotLeave.' + _this.windowId, function(event, eventData) {
+        if (_this.layerState.current == "display") {
+          _this.layerState.defaultState();
+          _this.modeSwitch();
+        }
+      });
+
+      _this.eventEmitter.subscribe('slotEnter.' + _this.windowId, function(event, eventData) {
+        if (_this.element.showAnno && _this.layerState.current == "display") {
+          _this.layerState.defaultState();
+          _this.modeSwitch();
+        }
       });
     },
 
@@ -16067,6 +16200,11 @@ bindEvents: function() {
               _this.osd.viewport.goHome(true);
             }
           };
+
+          if (_this.boundsToFocusOnNextOpen) {
+            _this.eventEmitter.publish('fitBounds.' + _this.windowId, _this.boundsToFocusOnNextOpen);
+            _this.boundsToFocusOnNextOpen = null;
+          }
 
           _this.osd.world.addHandler( "add-item", addItemHandler );
 
@@ -17453,6 +17591,11 @@ bindEvents: function() {
             _this.setBounds();
           }
 
+          if (_this.boundsToFocusOnNextOpen) {
+            _this.eventEmitter.publish('fitBounds.' + _this.windowId, _this.boundsToFocusOnNextOpen);
+            _this.boundsToFocusOnNextOpen = null;
+          }
+
           _this.addAnnotationsLayer(_this.elemAnno);
 
           // get the state before resetting it so we can get back to that state
@@ -17599,11 +17742,17 @@ bindEvents: function() {
       this.localState(localState);
     },
 
-    toggle: function() {},
+    imageFocusUpdated: function(focus) {
+      var localState = this.localState();
+      localState.active = (focus === 'ThumbnailsView') ? false : true;
+
+      this.localState(localState);
+    },
 
     listenForActions: function() {
       var _this = this;
 
+      // This event is fired by the component itself anytime its local state is updated.
       _this.eventEmitter.subscribe('layersTabStateUpdated.' + _this.windowId, function(_, data) {
         _this.render(data);
       });
@@ -17615,6 +17764,12 @@ bindEvents: function() {
       _this.eventEmitter.subscribe('currentCanvasIDUpdated.' + _this.windowId, function(event, canvasID) {
         //update layers for this canvasID
       });
+
+      _this.eventEmitter.subscribe('focusUpdated' + _this.windowId, function(event, focus) {
+        // update the disabled state of the layersTab
+        // since it cannot be used in overview mode
+        _this.imageFocusUpdated(focus);
+      });
     },
 
     bindEvents: function() {
@@ -17624,15 +17779,16 @@ bindEvents: function() {
 
     render: function(state) {
       var _this = this,
-      templateData = {};
+          templateData = {
+            active: state.active ? '' : 'inactive'
+          };
 
       if (this.element) {
         _this.appendTo.find(".layersPanel").remove();
       }
       this.element = jQuery(_this.template(templateData)).appendTo(_this.appendTo);
-      
-      _this.bindEvents();
 
+      _this.bindEvents();
 
       if (state.visible) {
         this.element.show();
@@ -17641,10 +17797,10 @@ bindEvents: function() {
       }
     },
 
-    template: $.Handlebars.compile([
-      '<div class="layersPanel">',
+    template: Handlebars.compile([
+      '<div class="layersPanel {{active}}">',
       '</div>',
-      ].join(''))
+    ].join(''))
   };
 
 }(Mirador));
@@ -17820,7 +17976,7 @@ bindEvents: function() {
       var collectionLabel = within.label || collectionUrl;
       return '<a href="' + collectionUrl + '" target="_blank">' + collectionLabel + '</a>';
      } else if (within instanceof Array) {
-       return within.map(this.getWithin).join("<br/>");
+       return within.map(this.getWithin, this).join("<br/>");
      } else {
        return this.stringifyObject(within);
      }
@@ -17954,16 +18110,696 @@ bindEvents: function() {
 
 (function($) {
 
+  $.SearchTab = function(options) {
+    jQuery.extend(true, this, {
+      element:           null,
+      appendTo:          null,
+      manifest:          null,
+      visible:           null,
+      canvasID:          null,
+      windowId:          null,
+      eventEmitter:      null,
+    }, options);
+
+    this.init();
+  };
+
+  $.SearchTab.prototype = {
+    init: function() {
+      var _this = this;
+      this.windowId = this.windowId;
+
+      this.localState({
+        id: 'searchTab',
+        visible: this.visible,
+      }, true);
+
+      this.listenForActions();
+      this.render(this.localState());
+      this.loadTabComponents();
+    },
+
+    localState: function(state, initial) {
+      if (!arguments.length) return this.searchTabState;
+      this.searchTabState = state;
+
+      if (!initial) {
+        this.eventEmitter.publish('searchTabStateUpdated.' + this.windowId, this.searchTabState);
+      }
+
+      return this.searchTabState;
+    },
+
+    loadTabComponents: function() {
+      var _this = this;
+    },
+
+    tabStateUpdated: function(data) {
+      if (data.tabs[data.selectedTabIndex].options.id === 'searchTab') {
+        this.element.show();
+      }
+      else {
+        this.element.hide();
+      }
+    },
+
+    toggle: function() {},
+
+    listenForActions: function() {
+      var _this = this;
+
+      //jQuery.subscribe('searchTabStateUpdated.' + _this.windowId, function(_, data) {
+      //    _this.render(data);
+      //});
+
+      this.eventEmitter.subscribe('tabStateUpdated.' + _this.windowId, function(_, data) {
+        _this.tabStateUpdated(data);
+      });
+
+      // eventEmitter.subscribe('currentCanvasIDUpdated.' + _this.windowId, function(event) {
+      //
+      // });
+    },
+
+    displaySearchWithin: function(query_params, searchUrl){
+      var _this = this;
+      if (query_params !== "") {
+
+        this.searchObject = new $.SearchWithinResults({
+          manifest: _this.manifest,
+          appendTo: _this.element.find(".search-results-list"),
+          panel: true,
+          canvasID: _this.canvasID,
+          windowId: _this.windowId,
+          imagesList: _this.imagesList,
+          thumbInfo: {thumbsHeight: 80, listingCssCls: 'panel-listing-thumbs', thumbnailCls: 'panel-thumbnail-view'},
+          query_params: query_params,
+          searchService: searchUrl,
+          eventEmitter: _this.eventEmitter
+        });
+      }
+    },
+
+    bindEvents: function() {
+      var _this = this;
+
+      this.element.find(".js-perform-query").on('submit', function(event){
+        event.preventDefault();
+
+        var query = _this.element.find(".js-query").val();
+        var motivation = _this.element.find(".js-motivation").val();
+        var date = _this.element.find(".js-date").val();
+        var user = _this.element.find(".js-user").val();
+        var searchUrl = _this.element.find("#search-within-selector").val();
+
+        _this.displaySearchWithin({
+          "q": query,
+          "motivation": motivation,
+          "date": date,
+          "user": user
+        }, searchUrl);
+
+      });
+
+      this.element.find(".js-search-expand").on('click', function(event){
+        event.preventDefault();
+
+        _this.element.find(".js-search-expanded").slideToggle("fast");
+
+        if (jQuery(this).text() === "more"){
+          jQuery(this).html("less");
+        }
+        else if (jQuery(this).text() === "less"){
+          jQuery(this).html("more");
+        }
+      });
+
+    },
+
+    render: function(state) {
+      var _this = this;
+
+      var searchService = this.manifest.getSearchWithinService(),
+          searchServiceIdArray = searchService && searchService.map(function(data){
+        return {
+          "url": data['@id'],
+          "label": data.label
+        };
+      });
+
+      templateData = {
+        searchService: searchServiceIdArray
+      };
+
+      if (!this.element) {
+        this.element = jQuery(_this.template(templateData)).appendTo(_this.appendTo);
+        _this.bindEvents();
+      } else {
+        _this.appendTo.find(".search-results").remove();
+        this.element = jQuery(_this.template(templateData)).appendTo(_this.appendTo);
+      }
+
+      if (state.visible) {
+        this.element.show();
+      } else {
+        this.element.hide();
+      }
+    },
+
+    template: Handlebars.compile([
+      '<div class="search-results">',
+        '{{#if searchService}}',
+          '<label>Select Search Service',
+          '<select id="search-within-selector" style="width: 100%">',
+            '{{#each searchService}}',
+            '<option value="{{ url }}">{{#if label}}{{ label }}{{ else }} {{ url }}{{/if}}</option>',
+            '{{/each}}',
+          '</select>',
+          '</label>',
+          '<form id="search-within-form" class="js-perform-query">',
+            '<input class="js-query" type="text" placeholder="search text"/>',
+
+            '<input style="margin: 10px 0" type="submit"/>',
+
+            '<a class="js-search-expand" style="display: block; margin: 0 0 5px 0">more</a>',
+            '<div class="js-search-expanded" style="display: none;">',
+              '<input class="js-motivation" type="text" placeholder="motivation"/>',
+              '<input class="js-date" type="text" placeholder="date"/>',
+              '<input class="js-user" type="text" placeholder="user"/>',
+              // '<input class="js-box" type="text" placeholder="box: x, y, w, h"/>',
+            '</div>',
+          '</form>',
+          '<div class="search-results-list"></div>',
+        '{{else}}',
+          'No search service available',
+        '{{/if}}',
+      '</div>',
+    ].join(''))
+  };
+
+}(Mirador));
+
+(function($) {
+
+/**
+ * UI + logic to get search results for a given search query. On initialization,
+ * the provided search query is given tothe provided IIIF Search service.
+ * The response is displayed as a list.
+ *
+ * Parameter 'query_params': {q: query, motivation: motivation, date: date, user: user}
+ *
+ * Currently follows IIIF Content Search API v1.0
+ * (http://iiif.io/api/search/0.9/)
+ */
+$.SearchWithinResults = function(options) {
+
+  jQuery.extend(this, {
+    manifest:             null,
+    element:              null,
+    metadataTypes:        null,
+    metadataListingCls:   'metadata-listing',
+    /** Search service URL */
+    searchService:     null,
+    windowId:             null,
+    /** {q: query, motivation: motivation, date: date, user: user} */
+    query_params:         null,
+    /** Used for paging. This assumes that searches start on page 1... */
+    currentPage:          1,
+    eventEmitter:         null
+  }, options);
+
+  this.init();
+};
+
+$.SearchWithinResults.prototype = {
+
+  init: function() {
+    this.registerHandlebars();
+
+    jQuery(this.appendTo).empty();
+    this.element = jQuery(this.template()).appendTo(this.appendTo);
+    jQuery("<hr/><h3>Search results for: " + this.query_params.q + "</h3><hr/>")
+        .appendTo(this.appendTo.find('.search-results-messages'));
+    this.doSearchFromQuery(this.query_params);
+  },
+
+  doSearchFromQuery: function(query_params) {
+    query_string = "";
+    for (var param in query_params){
+      if (param === "q"){
+        query_string += param + "=" + query_params[param];
+      }
+      else if (query_params[param].length > 0){
+       query_string += "&" + param + "=" + query_params[param];
+      }
+    }
+
+    var url = this.searchService + '?' + query_string;
+    this.doSearchFromUrl(url);
+  },
+
+  /**
+   * AJAX request is made from here!
+   *
+   * TODO Perhaps emit a search event here for the purposes of
+   * state tracking or analytics?
+   *
+   * @param  {[type]} url [description]
+   * @return {[type]}     [description]
+   */
+  doSearchFromUrl: function(url) {
+    var _this = this;
+
+    this.element.find('.search-results-container').empty();
+
+    jQuery.ajax({
+      url: url,
+      dataType: 'json',
+      async: true
+    })
+    .done(function(searchResults) {
+        if (searchResults.resources) {
+          // display result totals
+          _this.displayResultCounts(searchResults);
+          // show results list
+          _this.processResults(searchResults);
+      } else {
+        jQuery('.search-results-count').html("<hr/><p>No results</p><hr/>");
+      }
+    })
+    .fail(function() {
+        jQuery('.search-results-count').html("<hr/><p>No results</p><hr/>");
+    })
+    .always();
+  },
+
+
+  displayResultCounts: function(searchResults){
+    var total = searchResults.within.total,
+    startResultNumber = searchResults.startIndex + 1,
+    endResultNumber = "";
+
+    //if there is only only resource, it will not be array and therefore we can't
+    //take the length of it; this conditions check first to see if the resources
+    //property contains an array or single object
+
+    // TODO: not that this single object vs. array seems to be problem throughout.
+    // Pages with only one result do not display properly. See for example:
+    // http://exist.scta.info/exist/apps/scta/iiif/pl-zbsSII72/search?q=fides&page=3
+
+    if (searchResults.resources.constructor === Array) {
+      endResultNumber = searchResults.startIndex + searchResults.resources.length;
+    } else {
+      endResultNumber = searchResults.startIndex + 1;
+    }
+
+    jQuery('.search-results-count').html("<hr/><p>Showing " + startResultNumber + " - " + endResultNumber + " out of " + total + "</p><hr/>");
+  },
+
+  processResults: function(searchResults) {
+    //create tplData array
+    if (searchResults.hits) {
+      this.tplData = this.getHits(searchResults);
+    } else {
+      this.tplData = this.getSearchAnnotations(searchResults);
+    }
+    jQuery(Handlebars.compile('{{> resultsList }}')(this.tplData)).appendTo(jQuery(this.element.find('.search-results-container')));
+    this.bindEvents();
+
+    this.setPager(searchResults);
+  },
+
+  /**
+   * Look for necessary properties that point to the need for paging.
+   * Check for total number of results vs number of returned results.
+   *
+   * @param  results IIIF Search results
+   * @return TRUE if paging is needed
+   */
+  needsPager: function(results) {
+    // Check for some properties on the search results
+    if (!results || !results.within || !results.resources) {
+      return false;
+    }
+    var total = results.within.total;
+    // Check if 'resources' (list of annotations) is an array, or single value
+    if (Array.isArray(results.resources)) {
+      return results.resources.length < total;
+    } else {
+      return total > 1;
+    }
+  },
+
+  /**
+   * Initialize search results pager. It is assumed that it has already
+   * been determined whether or not the pager needs to be created.
+   * If a pager is created, it will be inserted into the DOM.
+   *
+   * If it is determined that this set of results does not need paging,
+   * then this function will exit early and no paging will be set.
+   * {@link SearchWithinResults#needsPager}
+   *
+   * @param  results - IIIF Search results
+   */
+  setPager: function(searchResults) {
+    var _this = this;
+    var pager = this.element.find('.search-results-pager');
+
+    // HACK: pager.pagination will be undefined until canvasID are set properly
+    if (!this.needsPager(searchResults) || !pager.pagination) {
+      return;
+    }
+
+    /*
+     * Hack to get proper page numbers.
+     * TODO probably shouldn't use this library if it requires page numbers,
+     * instead have something with ONLY FIRST/LAST and PREV/NEXT controls.
+     */
+    if (!this.onPageCount) { // This will be set with initial page and not be changed.
+      this.onPageCount = searchResults.resources.length;
+    }
+
+    pager.pagination({
+        items: searchResults.within.total,
+        itemsOnPage: _this.onPageCount,
+        currentPage: _this.currentPage,
+        displayedPages: 1,
+        edges: 1,
+        ellipsePageSet: false,
+        cssStyle: 'compact-theme',
+        hrefTextPrefix: '',
+        prevText: '<i class="fa fa-lg fa-angle-left"></i>',
+        nextText: '<i class="fa fa-lg fa-angle-right"></i>',
+        onPageClick: function(pageNumber, event) {
+          event.preventDefault();
+          pager.pagination('disable');
+
+          if (pageNumber == _this.currentPage - 1) {
+            _this.currentPage--;
+            _this.doSearchFromUrl(searchResults.prev);
+          } else if (pageNumber == _this.currentPage + 1) {
+            _this.currentPage++;
+            _this.doSearchFromUrl(searchResults.next);
+          } else if (pageNumber == 1) {
+            _this.doSearchFromUrl(searchResults.within.first);
+            _this.currentPage = 1;
+          } else {
+            // Assume this is the last page........
+            _this.doSearchFromUrl(searchResults.within.last);
+            /*
+             *  NOTE: There is no good way to get the page number from the search URL.
+             *  IIIF Content Search v1.0 spec (I do not think) does not define
+             *  how to specify a page.
+             *      -- For example, the page could be put into the URL
+             *  query string, or it could be put into the URL fragment, or somewhere
+             *  else.
+             *
+             *  This hack pulls the number of the last page on the pager. :/
+             */
+            _this.currentPage = parseInt(
+              _this.element.find('.search-results-pager li:nth-last-child(2)').text()
+            );
+          }
+        }
+    });
+    pager.pagination('enable');
+  },
+
+  /**
+   * Do a Bitwise OR to truncate decimal
+   *
+   * @param  num original number, could be integer or decimal
+   * @return integer with any decimal part of input truncated (no rounding)
+   */
+  float2int: function(num) {
+    return num | 0;
+  },
+
+  parseSearchAnnotation: function(annotation){
+    var _this = this;
+    var canvasid = annotation.on;
+    // deals with possibiliy of "on" propert taking an object
+    if (typeof canvasid === 'object') {
+      canvasid = annotation.on['@id'];
+    }
+
+    var canvaslabel = _this.getLabel(annotation);
+
+    // Split ID from Coordinates if necessary
+    var id_parts = _this.splitBaseUrlAndCoordinates(canvasid);
+
+    return {
+      canvasid: id_parts.base,
+      coordinates: id_parts.coords,
+      canvaslabel: canvaslabel,
+      resulttext: annotation.resource.chars
+    };
+  },
+
+  getSearchAnnotations: function(searchResults) {
+    var _this = this;
+    tplData = [];
+    //add condition here to make sure searchResults.resources is not null
+    if (searchResults.resources !== null) {
+      //This conditional handles if the results come back as a single object or as an array
+      //TODO: This possibility is not yet handled in the getHits function
+      if (!Array.isArray(searchResults.resources)){
+        annotation = searchResults.resources;
+        tplData.push(_this.parseSearchAnnotation(annotation));
+      }
+      else {
+        searchResults.resources.forEach(function(annotation){
+          tplData.push(_this.parseSearchAnnotation(annotation));
+        });
+      }
+    return tplData;
+    }
+  },
+
+  getHits: function(searchResults) {
+    var _this = this;
+    tplData = [];
+    searchResults.hits.forEach(function(hit) {
+      //this seems like a really slow way to retrieve on property from hits
+      //note that at present it is only retrieving the first annotation
+      //but a hit annotation property takes an array and could have more than one
+      //annotation -- its not a very common case but a possibility.
+      var resultObject, resultObjects = [];
+      hit.annotations.forEach(function(annotation) {
+        //canvases could come back as an array
+        var resource = _this.getHitResources(searchResults, annotation)[0],
+            canvasLabel = _this.getLabel(resource),
+            canvasID = resource && resource.on;
+        // If you have the full annotation, set ID and label appropriately
+        if (typeof canvasID === 'object') {
+          canvasID = resource.on['@id'];
+        }
+        // Extract coordinates if necessary
+        var canvasIDParts = _this.splitBaseUrlAndCoordinates(canvasID);
+        resultObject = {
+          canvasid: canvasIDParts.base,
+          coordinates: canvasIDParts.coords,
+          canvaslabel: canvasLabel,
+          hit: hit      // TODO must handle different results structures, see IIIF search spec for different responses
+        };
+        resultObjects.push(resultObject);
+      });
+      // First result is returned and gets attached an array of all annotations
+      if (resultObjects) {
+        resultObject = resultObjects[0];
+        if (resultObjects.length > 1) {
+          resultObject.annotations = resultObjects;
+        }
+        tplData.push(resultObject);
+      }
+    });
+    return tplData;
+  },
+
+  /**
+   * Get a label describing a search match. This label is set to the
+   * associated annotation label, if available, or to the label of the
+   * parent canvas.
+   *
+   * @param  {[type]} resource annotation associated with the search match
+   * @return {[type]}          string label
+   */
+  getLabel: function(resource) {
+    var label;
+
+    if (resource && typeof resource === 'object') {
+      if (resource.label) {
+        return resource.label;
+      } else if (resource.resource.label){
+        return resource.resource.label;
+      } else if (resource.on && typeof resource.on === 'string') {
+        label = this.manifest.getCanvasLabel(resource.on);
+        return label ? 'Canvas ' + label : undefined;
+      } else if (resource.on && typeof resource.on === 'object') {
+        label = resource.on.label ? resource.on.label : this.manifest.getCanvasLabel(resource.on['@id']);
+        return label ? 'Canvas ' + label : undefined;
+      }
+    } else {
+      return undefined;
+    }
+  },
+
+  getHitResources: function(searchResults, annotationid) {
+    // Get array of results
+    return searchResults.resources.filter(function(resource){
+      return resource['@id'] === annotationid;
+    });
+  },
+
+  /**
+   * @param  url - a resource ID
+   * @return {
+   *   base: base URL, or the original url param if no coords are present,
+   *   coords: coordinates from ID if present
+   * }
+   */
+  splitBaseUrlAndCoordinates: function(url) {
+    var coordinates;
+    var base = url;
+
+    if (typeof url === 'string') {
+      // Separate base ID from fragment selector
+      var parts = url.split('#');
+
+      base = parts[0];
+      if (parts.length === 2) {
+        coordinates = parts[1];
+      }
+    }
+
+    return {
+      base: base,
+      coords: coordinates
+    };
+  },
+
+  bindEvents: function() {
+    var _this = this;
+
+    // jQuery.subscribe(('currentCanvasIDUpdated.' + _this.windowId), function(event, canvasID) {
+    //     //if (!_this.structures) { return; }
+    //     //_this.setSelectedElements($.getRangeIDByCanvasID(_this.structures, canvasID));
+    //     //_this.render();
+    //
+    //   });
+
+    //TODO
+    //This function works to move the user to the specified canvas
+    //but if there are associated coordinates, it does not yet know how to highlight
+    //those coordinates.
+
+    //thie miniAnnotatList attempted to do this, but is no longer working
+    //it needs to be replaced by a new strategy.
+
+    this.element.find('.js-show-canvas').on("click", function(event) {
+      event.stopPropagation();
+
+      var canvasid = jQuery(this).attr('data-canvasid'),
+          coordinates = jQuery(this).attr('data-coordinates'),
+          xywh = coordinates && coordinates.split('=')[1].split(',').map(Number),
+          bounds = xywh && {x: xywh[0], y: xywh[1], width: xywh[2], height: xywh[3]};
+      jQuery(".result-wrapper").css("background-color", "inherit");
+      jQuery(this).parent().css("background-color", "lightyellow");
+      //if there was more than one annotation
+      //(for example if a word crossed a line and needed two coordinates sets)
+      //the miniAnnotationList should have multiple objects
+      miniAnnotationList  = [{
+        "@id": "test",
+        "@type": "oa:Annotation",
+        "motivation": "sc:painting",
+        "resource": {
+          "@type": "cnt:ContentAsText",
+          "chars": _this.query
+        },
+        "on": canvasid + (coordinates ? "#" + coordinates : '')
+        }];
+      //_this.parent.annotationsList = miniAnnotationList;
+      var options = {
+        "canvasID": canvasid,
+        "bounds": bounds
+      };
+      _this.eventEmitter.publish('SET_CURRENT_CANVAS_ID.' + _this.windowId, options);
+    });
+  },
+
+  registerHandlebars: function() {
+    Handlebars.registerPartial('resultsList', [
+      '{{#each this}}',
+        '<div class="result-wrapper">',
+          '<a class="search-result search-title js-show-canvas" data-canvasid="{{canvasid}}" data-coordinates="{{coordinates}}">',
+            '{{canvaslabel}}',
+          '</a>',
+          '{{#if annotations}}',
+            '<div>',
+            'Annotations: ',
+            '{{#each annotations}}',
+              '<a class="search-result search-annotation js-show-canvas" data-canvasid="{{canvasid}}" data-coordinates="{{coordinates}}">',
+                '<i class="fa fa-fw" aria-hidden="true"></i>',
+              '</a>',
+            '{{/each}}',
+            '</div>',
+          '{{/if}}',
+          '<div class="search-result result-paragraph js-show-canvas" data-canvasid="{{canvasid}}" data-coordinates="{{coordinates}}">',
+            '{{#if hit.before}}',
+              '{{hit.before}} ',
+            '{{/if}}',
+            '{{#if hit.match}}',
+              '<span class="highlight">{{hit.match}}</span>',
+            '{{else}}',
+              '{{{resulttext}}}',   // If this text must NOT be escaped, use:   '{{resulttext}}'
+            '{{/if}}',
+            '{{#if hit.after}}',
+              '{{ hit.after}}',
+            '{{/if}}',
+          '</div>',
+        '</div>',
+      '{{/each}}',
+    ].join(''));
+  },
+
+  /**
+   * Handlebars template. Accepts data and formats appropriately. To use,
+   * just pass in the template data and this will return a String with
+   * the formatted HTML which can then be inserted into the DOM.
+   *
+   * This template expects a IIIF AnnotationList formatted to represent
+   * IIIF Search results.
+   *
+   * EX: assume context:
+   *    var templateData = { template data goes here }
+   *    var htmlString = template(templateData);
+   */
+  template: Handlebars.compile([
+    '<div>',
+      '<div class="search-results-messages"></div>',
+      '<div class="search-results-count"></div>',
+      '<div class="search-results-pager"></div>',
+      '<div class="search-results-container">',
+        '{{> resultsList }}',
+      '</div>',
+    '</div>'
+  ].join(""))};
+
+}(Mirador));
+
+(function($) {
+
   $.SidePanel= function(options) {
     jQuery.extend(true, this, {
       element:           null,
       appendTo:          null,
       manifest:          null,
       panelState:        {},
-      tocTabAvailable:   false,
-      annotationsTabAvailable: false,
-      layersTabAvailable: false,
-      toolsTabAvailable: false,
+      tocTabAvailable:   null,
+      // annotationsTabAvailable: false,
+      // layersTabAvailable: null,
+      // toolsTabAvailable: false,
+      searchTabAvailable: null,
       hasStructures:     false,
       state:             null,
       eventEmitter:      null
@@ -17982,7 +18818,7 @@ bindEvents: function() {
             name : 'toc',
             options : {
               available: _this.tocTabAvailable,
-              id:'tocTab', 
+              id:'tocTab',
               label:'Index'
             }
           },
@@ -17990,26 +18826,34 @@ bindEvents: function() {
            name : 'annotations',
            options : {
            available: _this.annotationsTabAvailable,
-           id:'annotationsTab', 
+           id:'annotationsTab',
            label:'Annotations'
            }
            },*/
-          {
-            name : 'layers',
-            options : {
-              available: _this.layersTabAvailable,
-              id:'layersTab', 
-              label:'Layers'
-            }
-          },
+          // {
+          //   name : 'layers',
+          //   options : {
+          //     available: _this.layersTabAvailable,
+          //     id:'layersTab',
+          //     label:'Layers'
+          //   }
+          // },
           /*{
            name : 'tools',
            options : {
            available: _this.toolsTabAvailable,
-           id:'toolsTab', 
+           id:'toolsTab',
            label:'Tools'
            }
            }*/
+          {
+            name : 'search',
+            options : {
+              available: _this.searchTabAvailable,
+              id: 'searchTab',
+              label: 'Search'
+            }
+          }
         ],
         width: 280,
         open: true
@@ -18051,16 +18895,26 @@ bindEvents: function() {
           eventEmitter: _this.eventEmitter
         });
       }
-      if (_this.layersTabAvailable) {
-        new $.LayersTab({
+      if (_this.searchTabAvailable) {
+        new $.SearchTab({
           manifest: _this.manifest,
           windowId: this.windowId,
           appendTo: _this.element.find('.tabContentArea'),
-          canvasID: this.canvasID,
           state: _this.state,
+          manifestVersion: this.manifest.getVersion(),
           eventEmitter: _this.eventEmitter
         });
       }
+      // if (_this.layersTabAvailable) {
+      //   new $.LayersTab({
+      //     manifest: _this.manifest,
+      //     windowId: this.windowId,
+      //     appendTo: _this.element.find('.tabContentArea'),
+      //     canvasID: this.canvasID,
+      //     state: _this.state,
+      //     eventEmitter: _this.eventEmitter
+      //   });
+      // }
 
     },
 
@@ -18160,11 +19014,11 @@ bindEvents: function() {
       if (!enableSidePanel) {
         jQuery(this.appendTo).hide();
         _this.eventEmitter.publish('ADD_CLASS.'+this.windowId, 'focus-max-width');
-        _this.eventEmitter.publish('HIDE_ICON_TOC.'+this.windowId);                
+        _this.eventEmitter.publish('HIDE_ICON_TOC.'+this.windowId);
       } else {
         jQuery(this.appendTo).show({effect: "fade", duration: 300, easing: "easeInCubic"});
         _this.eventEmitter.publish('REMOVE_CLASS.'+this.windowId, 'focus-max-width');
-        _this.eventEmitter.publish('SHOW_ICON_TOC.'+this.windowId);                
+        _this.eventEmitter.publish('SHOW_ICON_TOC.'+this.windowId);
       }
     }
   };
@@ -18209,8 +19063,7 @@ bindEvents: function() {
 
             this.state({
                 tabs : this.tabs,
-                //tabs: [{id:'tocTab', label:'Indices'}, {id:'annotationsTab', label:'Annotations'}],
-                //tabs: [{id:'tocTab', label:'Indices'}],
+                // tabs: [{id:'tocTab', label:'Indices'}, {id:'searchTab', label:'Search'}],
                 selectedTabIndex: 0
             }, true);
             this.listenForActions();
@@ -18236,7 +19089,8 @@ bindEvents: function() {
         getTemplateData: function() {
             return {
                 annotationsTab: this.state().annotationsTab,
-                tocTab: this.state().tocTab
+                tocTab: this.state().tocTab,
+                searchTab: this.state().searchTab
             };
         },
         listenForActions: function() {
@@ -18269,15 +19123,15 @@ bindEvents: function() {
                     return value.options.available;
                 });
                 renderingData.tabs = tabs;
-                if(renderingData.tabs.length === 1){                    
+                if(renderingData.tabs.length === 1){
                     // TODO: temporary logic to minimize side panel if only tab is toc and toc is empty
                     if (renderingData.tabs[0].name === 'toc' && !_this.hasStructures) {
                         _this.eventEmitter.publish("sidePanelVisibilityByTab." + _this.windowId, false);
                     }
 
                     // don't show button if only one tab
-                    renderingData.tabs = []; 
-                } 
+                    renderingData.tabs = [];
+                }
                 //TODO: add text if there is one label or no content within this tab
                 this.element = jQuery(_this.template(renderingData)).prependTo(_this.appendTo);
                 return;
@@ -18389,11 +19243,12 @@ bindEvents: function() {
       scrollPosition,
       windowObject = this.state.getWindowObjectById(this.windowId);
 
-      if (windowObject && windowObject.viewType === 'BookView') {
-        scrollPosition = _this.element.scrollLeft() + (target.position().left + (target.next().width() + target.outerWidth())/2) - _this.element.width()/2;
-      } else {
-
-        scrollPosition = _this.element.scrollLeft() + (target.position().left + target.width()/2) - _this.element.width()/2;
+      if (target.position()) {
+        if (windowObject && windowObject.viewType === 'BookView') {
+          scrollPosition = _this.element.scrollLeft() + (target.position().left + (target.next().width() + target.outerWidth())/2) - _this.element.width()/2;
+        } else {
+          scrollPosition = _this.element.scrollLeft() + (target.position().left + target.width()/2) - _this.element.width()/2;
+        }
       }
       _this.element.scrollTo(scrollPosition, 900);
     },
@@ -18432,8 +19287,8 @@ bindEvents: function() {
     },
 
     toggle: function(stateValue) {
-      if (stateValue) { 
-        this.show(); 
+      if (stateValue) {
+        this.show();
       } else {
         this.hide();
       }
@@ -20093,7 +20948,7 @@ bindEvents: function() {
 
   $.sanitizeHtml = function(dirty) {
     return sanitizeHtml(dirty, {
-      allowedTags: ['a', 'b', 'br', 'i', 'img', 'p', 'span', 'strong', 'em'],
+      allowedTags: ['a', 'b', 'br', 'i', 'img', 'p', 'span', 'strong', 'em', 'ul', 'ol', 'li'],
       allowedAttributes: {
         'a': ['href', 'target'],
         'img': ['src', 'alt'],

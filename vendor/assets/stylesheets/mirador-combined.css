@@ -3162,7 +3162,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 }
 .mirador-container .tabContentArea {
   position: relative;
-  width: 280px;
+  width: 270px;
   height: 100%;
   float: left;
   background-color: #efefef;
@@ -3175,10 +3175,24 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   padding: 0;
   margin: 0;
 }
+.mirador-container .search-results {
+  padding: 0 5px 0 0;
+  margin: 0;
+  position: absolute;
+  height: 100%;
+}
+.mirador-container .search-results .search-results-container {
+  overflow-y: scroll;
+  position: absolute;
+  height: 70%;
+}
+.mirador-container .search-results .search-results-list .result-wrapper .result-paragraph .highlight {
+  background-color: #ffff00;
+}
 .mirador-container .toc {
   margin: 0;
   overflow-y: scroll;
-  width: 280px;
+  width: 270px;
   padding: 0;
   position: absolute;
   box-sizing: border-box;

@@ -1,5 +1,5 @@
 MiradorRails::Engine.routes.draw do
-  match '/:locale/translation',
+  match '/:id/translation',
         to: 'mirador_rails/locales#locale',
         via: :get,
         as: :locales,

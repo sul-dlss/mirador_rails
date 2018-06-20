@@ -6,8 +6,9 @@ module Mirador
     # @param [String] width
     # @param [String] position
     # @param [String] display
+    # @param [String] instance_name
     # @param [Hash] options Mirador settings
-    def mirador_tag(id: SecureRandom.uuid, height: '100%', width: '100%', position: 'relative', display: 'block', options: {})
+    def mirador_tag(id: SecureRandom.uuid, height: '100%', width: '100%', position: 'relative', display: 'block', instance_name: nil, options: {})
       config = {
         id: id,
         buildPath: '/assets/',
@@ -19,11 +20,20 @@ module Mirador
                "position: #{position}; display: #{display};"
       output = []
       output << content_tag(:div, '', id: id, style: styles)
-      output << '<script type="text/javascript">'       \
-                '  $(function() {'                      \
-                "    Mirador(#{config.to_json})"        \
-                '  });'                                 \
-                '</script>'
+
+      if instance_name
+        output << '<script type="text/javascript">'                   \
+                  '  $(function() {'                                  \
+                  "    #{instance_name} = Mirador(#{config.to_json})"  \
+                  '  });'                                             \
+                  '</script>'
+      else
+        output << '<script type="text/javascript">'   \
+                  '  $(function() {'                  \
+                  "    Mirador(#{config.to_json})"    \
+                  '  });'                             \
+                  '</script>'
+      end
       output.join.html_safe
     end
   end

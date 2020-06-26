@@ -1,8 +1,8 @@
-# MiradorRails
+# MiradorRails [![Gem Version](https://badge.fury.io/rb/mirador_rails.svg)](https://badge.fury.io/rb/mirador_rails)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mirador_rails`. To experiment with that code, run `bin/console` for an interactive prompt.
+⚠️ `mirador_rails` is a Ruby gem for including Mirador 2 in Rails app. Please note that Mirador 2 is no longer under active development.
 
-TODO: Delete this and the text above, and describe your gem
+We recommend using Mirador 3 via the [mirador npm package](https://www.npmjs.com/package/mirador). Recommended approaches to embedding Mirador 3 are available on the [Mirador wiki](https://github.com/projectmirador/mirador/wiki).
 
 ## Installation
 
